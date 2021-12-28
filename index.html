@@ -1,1 +1,49 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+	body,
+	html {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		font-family: sans-serif;
+		background-color: #212529;
+	}
+     	.time,
+	.day {
+		color: #fff;	
+		margin-top: 5px;
+	}
+	.time {
+		letter-spacing: 1px;
+	    	font-size: 2.5rem;
+		margin-top: 0;
+	}
+    </style>
+</head>
+<body>
+    <div class="time" id="time"></div>
+    <div class="day" id="day"></div>
+    <script>
+        const today  = new Date();
+        const dayOptions = { month: 'short', day: 'numeric', weekday: 'long' };
+        const dayLabel = window.document.querySelector('#day');
+            dayLabel.innerHTML = today.toLocaleDateString("en-US", dayOptions);
+        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        const timeLabel = window.document.querySelector('#time');
+        timeLabel.innerHTML = today.toLocaleTimeString("en-US", timeOptions);
+        setInterval(function(){
+            const now = new Date();
+            timeLabel.innerHTML = now.toLocaleTimeString("en-US", timeOptions);
+        },1000);
+    </script>
+</body>
+</html>
